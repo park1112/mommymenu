@@ -1,0 +1,107 @@
+{
+  "name": "MommyMenu - 임산부 영양 관리",
+  "short_name": "MommyMenu",
+  "description": "임산부를 위한 맞춤형 영양 관리 및 식단 추천 서비스",
+  "theme_color": "#ec4899",
+  "background_color": "#fef2f8",
+  "display": "standalone",
+  "scope": "/",
+  "start_url": "/",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/icons/icon-72x72.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-128x128.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-144x144.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-152x152.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-384x384.png",
+      "sizes": "384x384",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["health", "medical", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "식사 기록",
+      "short_name": "기록",
+      "description": "오늘의 식사 기록하기",
+      "url": "/dashboard/meals?action=record",
+      "icons": [{ "src": "/icons/meal.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "영양 현황",
+      "short_name": "영양",
+      "description": "오늘의 영양 섭취 확인",
+      "url": "/dashboard/nutrition",
+      "icons": [{ "src": "/icons/nutrition.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "커뮤니티",
+      "short_name": "소통",
+      "description": "다른 예비맘들과 소통",
+      "url": "/dashboard/community",
+      "icons": [{ "src": "/icons/community.png", "sizes": "96x96" }]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/dashboard.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "label": "대시보드"
+    },
+    {
+      "src": "/screenshots/nutrition.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "label": "영양 관리"
+    },
+    {
+      "src": "/screenshots/meals.png",
+      "type": "image/png",
+      "sizes": "540x720",
+      "label": "식사 계획"
+    }
+  ],
+  "lang": "ko-KR",
+  "dir": "ltr"
+}

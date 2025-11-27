@@ -1,0 +1,336 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yeseva+One&family=Caveat:wght@400;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Base Colors */
+  --background: #ffffff;
+  --foreground: #1A2332;
+  
+  /* Organic Feminine Palette */
+  --rose-petal: #f5e6e8;
+  --soft-blush: #ead4d9;
+  --warm-cream: #f9f7f4;
+  --dusty-lavender: #e8d8f5;
+  --sage-whisper: #e1f0dc;
+  --peachy-glow: #f7e8dc;
+  --misty-blue: #e3f1fd;
+  --lavender-mist: #f0e8ff;
+  
+  /* Accent Colors */
+  --coral-bloom: #ff8a80;
+  --golden-honey: #ffcc80;
+  --mint-fresh: #a5d6a7;
+  --lilac-dream: #ce93d8;
+  
+  /* Organic Shadows */
+  --shadow-soft: 0 2px 20px -2px rgba(255, 182, 193, 0.1), 0 8px 32px -8px rgba(219, 112, 147, 0.12);
+  --shadow-medium: 0 4px 32px -4px rgba(255, 182, 193, 0.15), 0 16px 64px -12px rgba(219, 112, 147, 0.18);
+  --shadow-strong: 0 8px 48px -8px rgba(255, 182, 193, 0.2), 0 24px 80px -16px rgba(219, 112, 147, 0.25);
+  
+  /* Typography */
+  --font-display: 'Yeseva One', 'Noto Sans KR', serif;
+  --font-handwritten: 'Caveat', 'Noto Sans KR', cursive;
+  --font-body: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.dark {
+  --background: #0F1419;
+  --foreground: #F5F7FA;
+}
+
+@layer base {
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Consistent heading styles */
+  h1 {
+    @apply text-4xl font-bold tracking-tight;
+  }
+  
+  h2 {
+    @apply text-3xl font-semibold tracking-tight;
+  }
+  
+  h3 {
+    @apply text-2xl font-semibold;
+  }
+  
+  h4 {
+    @apply text-xl font-medium;
+  }
+  
+  h5 {
+    @apply text-lg font-medium;
+  }
+  
+  h6 {
+    @apply text-base font-medium;
+  }
+
+  /* Consistent paragraph spacing */
+  p {
+    @apply leading-relaxed;
+  }
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Organic Feminine Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes gentleFloat {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  33% { 
+    transform: translateY(-3px) rotate(0.5deg); 
+  }
+  66% { 
+    transform: translateY(2px) rotate(-0.3deg); 
+  }
+}
+
+@keyframes organicSlideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(15px) scale(0.98) rotate(-0.5deg);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
+@keyframes blossomGrow {
+  0% {
+    opacity: 0;
+    transform: scale(0.3) rotate(-10deg);
+    filter: blur(3px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.05) rotate(2deg);
+    filter: blur(1px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: blur(0px);
+  }
+}
+
+@keyframes shimmerWave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes heartbeat {
+  0%, 70%, 100% {
+    transform: scale(1);
+    filter: brightness(1);
+  }
+  15%, 30% {
+    transform: scale(1.08);
+    filter: brightness(1.1);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* Organic Animation Classes */
+.animate-in {
+  animation: fadeIn 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide-up {
+  animation: organicSlideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.blossom-grow {
+  animation: blossomGrow 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.gentle-float {
+  animation: gentleFloat 4s ease-in-out infinite;
+}
+
+.heartbeat {
+  animation: heartbeat 1.8s ease-in-out infinite;
+}
+
+.shimmer {
+  background: linear-gradient(90deg, transparent, rgba(255, 182, 193, 0.4), transparent);
+  background-size: 200% 100%;
+  animation: shimmerWave 2s infinite;
+}
+
+/* Safe area for iOS devices */
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F5F7FA;
+  border-radius: 100vh;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1A2332;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #A8B3C1;
+  border-radius: 100vh;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #5E6C84;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7F8FA4;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #5E6C84;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Organic Utility Classes */
+@layer utilities {
+  .organic-shadow {
+    box-shadow: var(--shadow-soft);
+  }
+  
+  .organic-shadow-md {
+    box-shadow: var(--shadow-medium);
+  }
+  
+  .organic-shadow-lg {
+    box-shadow: var(--shadow-strong);
+  }
+  
+  .organic-rounded {
+    border-radius: 1.2rem 1.8rem 1.5rem 1.6rem;
+  }
+  
+  .organic-rounded-lg {
+    border-radius: 1.8rem 2.4rem 2.1rem 2.2rem;
+  }
+  
+  .organic-rounded-xl {
+    border-radius: 2.2rem 2.8rem 2.5rem 2.6rem;
+  }
+  
+  .feminine-gradient {
+    background: linear-gradient(135deg, var(--rose-petal) 0%, var(--soft-blush) 50%, var(--warm-cream) 100%);
+  }
+  
+  .peachy-gradient {
+    background: linear-gradient(135deg, var(--peachy-glow) 0%, var(--warm-cream) 100%);
+  }
+  
+  .lavender-gradient {
+    background: linear-gradient(135deg, var(--dusty-lavender) 0%, var(--lavender-mist) 100%);
+  }
+  
+  .sage-gradient {
+    background: linear-gradient(135deg, var(--sage-whisper) 0%, var(--mint-fresh) 100%);
+  }
+  
+  .glass-morph {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  
+  .text-feminine {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+  
+  .text-handwritten {
+    font-family: var(--font-handwritten);
+  }
+  
+  .interactive-lift {
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  
+  .interactive-lift:hover {
+    transform: translateY(-4px) rotate(0.5deg);
+    box-shadow: var(--shadow-medium);
+  }
+}
+
+/* Mobile touch feedback */
+@media (hover: none) {
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+
+/* Improved focus styles */
+:focus-visible {
+  outline: 2px solid #3373BA;
+  outline-offset: 2px;
+}
+
+/* Responsive text sizes */
+@media (max-width: 640px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  html {
+    font-size: 15px;
+  }
+}
+
+@media (min-width: 769px) {
+  html {
+    font-size: 16px;
+  }
+}

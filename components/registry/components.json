@@ -1,0 +1,112 @@
+{
+  "version": "1.0.0",
+  "lastUpdated": "2025-08-19T06:42:38.870Z",
+  "components": [
+    {
+      "name": "Input",
+      "category": "ui",
+      "path": "@/components/ui/input",
+      "version": "1.0.0",
+      "createdAt": "2025-08-19T06:02:14.187Z"
+    },
+    {
+      "name": "Card",
+      "category": "ui",
+      "path": "@/components/ui/card",
+      "version": "1.0.0",
+      "createdAt": "2025-08-19T06:03:14.719Z"
+    },
+    {
+      "name": "Dialog",
+      "category": "ui",
+      "path": "@/components/ui/dialog",
+      "version": "1.0.0",
+      "createdAt": "2025-08-19T06:03:50.365Z"
+    },
+    {
+      "name": "Select",
+      "category": "ui",
+      "path": "@/components/ui/select",
+      "version": "1.0.0",
+      "createdAt": "2025-08-19T06:04:34.460Z"
+    },
+    {
+      "name": "Table",
+      "category": "ui",
+      "path": "@/components/ui/table",
+      "version": "1.0.0",
+      "createdAt": "2025-08-19T06:04:42.935Z"
+    },
+    {
+      "name": "ProductCard",
+      "category": "feature",
+      "path": "@/components/feature/product-card",
+      "version": "1.0.0",
+      "createdAt": "2025-08-19T06:09:19.276Z"
+    },
+    {
+      "name": "ProductSelector",
+      "category": "feature",
+      "path": "@/components/feature/product-selector",
+      "version": "1.0.0",
+      "createdAt": "2025-08-19T06:10:07.908Z"
+    },
+    {
+      "name": "DashboardStats",
+      "category": "feature",
+      "path": "@/components/feature/dashboard-stats",
+      "version": "1.0.0",
+      "createdAt": "2025-08-19T06:39:41.003Z"
+    },
+    {
+      "name": "ShipmentTable",
+      "category": "feature",
+      "path": "@/components/feature/shipment-table",
+      "version": "1.0.0",
+      "createdAt": "2025-08-19T06:42:38.870Z"
+    }
+  ],
+  "categories": {
+    "ui": {
+      "name": "UI Components",
+      "description": "Basic UI building blocks",
+      "components": [
+        "Input",
+        "Card",
+        "Dialog",
+        "Select",
+        "Table"
+      ]
+    },
+    "feature": {
+      "name": "Feature Components",
+      "description": "Business logic and feature-specific components",
+      "components": [
+        "ProductCard",
+        "ProductSelector",
+        "DashboardStats",
+        "ShipmentTable"
+      ]
+    },
+    "layout": {
+      "name": "Layout Components",
+      "description": "Page and section layout components",
+      "components": []
+    },
+    "composite": {
+      "name": "Composite Components",
+      "description": "Complex components built from multiple base components",
+      "components": []
+    },
+    "chart": {
+      "name": "Chart Components",
+      "description": "Data visualization and chart components",
+      "components": []
+    },
+    "form": {
+      "name": "Form Components",
+      "description": "Form inputs and validation components",
+      "components": []
+    }
+  }
+}
