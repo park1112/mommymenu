@@ -33,7 +33,7 @@ export default function RegisterPage() {
   })
   const [errors, setErrors] = useState<{[key: string]: string}>({})
 
-  const handleInputChange = (field: string, value: string | boolean | string[]) => {
+  const handleInputChange = (field: string, value: string | boolean | string[] | { meals: boolean; appointments: boolean; community: boolean }) => {
     setFormData(prev => ({ ...prev, [field]: value }))
     if (errors[field]) {
       setErrors(prev => ({ ...prev, [field]: '' }))
@@ -164,7 +164,7 @@ export default function RegisterPage() {
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="p-1 text-gray-400 hover:text-gray-600"
+              className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
             >
               {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
             </button>
@@ -202,36 +202,36 @@ export default function RegisterPage() {
       </div>
 
       <div>
-        <label className="text-sm font-medium text-gray-700 mb-3 block">
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 block">
           임신 경험 <span className="text-red-500">*</span>
         </label>
         <div className="space-y-2">
-          <label className="flex items-center gap-3 cursor-pointer p-3 border rounded-lg hover:bg-gray-50">
+          <label className="flex items-center gap-3 cursor-pointer p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 bg-white dark:bg-gray-800">
             <input
               type="radio"
               name="isFirstPregnancy"
               value="true"
               checked={formData.isFirstPregnancy === 'true'}
               onChange={(e) => handleInputChange('isFirstPregnancy', e.target.value)}
-              className="w-4 h-4 text-pink-600 border-gray-300 focus:ring-pink-500"
+              className="w-4 h-4 text-pink-600 border-gray-300 dark:border-gray-600 focus:ring-pink-500"
             />
             <div>
-              <div className="font-medium">첫 임신이에요</div>
-              <div className="text-sm text-gray-500">임신과 관련된 기초 정보를 더 자세히 안내드릴게요</div>
+              <div className="font-medium text-gray-900 dark:text-gray-100">첫 임신이에요</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">임신과 관련된 기초 정보를 더 자세히 안내드릴게요</div>
             </div>
           </label>
-          <label className="flex items-center gap-3 cursor-pointer p-3 border rounded-lg hover:bg-gray-50">
+          <label className="flex items-center gap-3 cursor-pointer p-3 border border-gray-200 dark:border-gray-700 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 bg-white dark:bg-gray-800">
             <input
               type="radio"
               name="isFirstPregnancy"
               value="false"
               checked={formData.isFirstPregnancy === 'false'}
               onChange={(e) => handleInputChange('isFirstPregnancy', e.target.value)}
-              className="w-4 h-4 text-pink-600 border-gray-300 focus:ring-pink-500"
+              className="w-4 h-4 text-pink-600 border-gray-300 dark:border-gray-600 focus:ring-pink-500"
             />
             <div>
-              <div className="font-medium">임신 경험이 있어요</div>
-              <div className="text-sm text-gray-500">이전 경험을 바탕으로 맞춤 정보를 제공해드릴게요</div>
+              <div className="font-medium text-gray-900 dark:text-gray-100">임신 경험이 있어요</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">이전 경험을 바탕으로 맞춤 정보를 제공해드릴게요</div>
             </div>
           </label>
         </div>
@@ -255,12 +255,12 @@ export default function RegisterPage() {
       </div>
 
       <div>
-        <label className="text-sm font-medium text-gray-700 mb-3 block">알림 설정</label>
+        <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-3 block">알림 설정</label>
         <div className="space-y-3">
-          <div className="flex items-center justify-between p-3 border rounded-lg">
+          <div className="flex items-center justify-between p-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800">
             <div>
-              <div className="font-medium">식사 알림</div>
-              <div className="text-sm text-gray-500">식사 시간과 영양 정보를 알려드려요</div>
+              <div className="font-medium text-gray-900 dark:text-gray-100">식사 알림</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">식사 시간과 영양 정보를 알려드려요</div>
             </div>
             <button
               type="button"
@@ -278,10 +278,10 @@ export default function RegisterPage() {
             </button>
           </div>
 
-          <div className="flex items-center justify-between p-3 border rounded-lg">
+          <div className="flex items-center justify-between p-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800">
             <div>
-              <div className="font-medium">검진 알림</div>
-              <div className="text-sm text-gray-500">병원 예약일과 검사 일정을 알려드려요</div>
+              <div className="font-medium text-gray-900 dark:text-gray-100">검진 알림</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">병원 예약일과 검사 일정을 알려드려요</div>
             </div>
             <button
               type="button"
@@ -299,10 +299,10 @@ export default function RegisterPage() {
             </button>
           </div>
 
-          <div className="flex items-center justify-between p-3 border rounded-lg">
+          <div className="flex items-center justify-between p-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800">
             <div>
-              <div className="font-medium">커뮤니티 알림</div>
-              <div className="text-sm text-gray-500">새로운 게시글과 댓글을 알려드려요</div>
+              <div className="font-medium text-gray-900 dark:text-gray-100">커뮤니티 알림</div>
+              <div className="text-sm text-gray-500 dark:text-gray-400">새로운 게시글과 댓글을 알려드려요</div>
             </div>
             <button
               type="button"
@@ -325,7 +325,7 @@ export default function RegisterPage() {
   )
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
@@ -333,10 +333,10 @@ export default function RegisterPage() {
             <Baby className="w-8 h-8 text-pink-500" />
             <Heart className="w-6 h-6 text-rose-500" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
             MommyMenu 회원가입
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-400">
             건강한 임신을 위한 맞춤 서비스를 시작하세요
           </p>
         </div>
@@ -347,9 +347,9 @@ export default function RegisterPage() {
             {[1, 2, 3].map((step) => (
               <div key={step} className="flex items-center">
                 <div className={`flex items-center justify-center w-8 h-8 rounded-full border-2 ${
-                  step <= currentStep 
-                    ? 'bg-pink-600 border-pink-600 text-white' 
-                    : 'border-gray-300 text-gray-300'
+                  step <= currentStep
+                    ? 'bg-pink-600 border-pink-600 text-white'
+                    : 'border-gray-300 dark:border-gray-600 text-gray-300 dark:text-gray-500'
                 }`}>
                   {step < currentStep ? (
                     <CheckCircle className="w-5 h-5" />
@@ -359,13 +359,13 @@ export default function RegisterPage() {
                 </div>
                 {step < 3 && (
                   <div className={`w-16 h-0.5 mx-2 ${
-                    step < currentStep ? 'bg-pink-600' : 'bg-gray-300'
+                    step < currentStep ? 'bg-pink-600' : 'bg-gray-300 dark:bg-gray-600'
                   }`} />
                 )}
               </div>
             ))}
           </div>
-          <div className="flex justify-between text-xs text-gray-500">
+          <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400">
             <span>기본정보</span>
             <span>임신정보</span>
             <span>설정완료</span>
@@ -413,9 +413,9 @@ export default function RegisterPage() {
 
         {/* Login Link */}
         <div className="text-center mt-6">
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-400">
             이미 계정이 있으시나요?{' '}
-            <Link href="/auth/login" className="text-pink-600 hover:text-pink-500 font-medium">
+            <Link href="/auth/login" className="text-pink-600 dark:text-pink-400 hover:text-pink-500 font-medium">
               로그인하기
             </Link>
           </p>
@@ -423,7 +423,7 @@ export default function RegisterPage() {
 
         {/* Back to Home */}
         <div className="text-center mt-4">
-          <Link href="/" className="text-sm text-gray-500 hover:text-gray-700">
+          <Link href="/" className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
             ← 홈으로 돌아가기
           </Link>
         </div>

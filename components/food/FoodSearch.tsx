@@ -42,12 +42,12 @@ export function FoodSearch({ onAddFood, mealType = 'snack' }: FoodSearchProps) {
     // 서빙 수량에 맞게 영양소 계산
     Object.keys(nutrition).forEach(key => {
       const nutrientKey = key as keyof NutritionInfo
-      totalNutrition[nutrientKey] = nutrition[nutrientKey] * servingAmount
+      totalNutrition[nutrientKey] = (nutrition[nutrientKey] || 0) * servingAmount
     })
 
     // 식사 기록에 추가
     addMealEntry({
-      foodName: food.name,
+      name: food.name,
       mealType,
       calories: totalNutrition.calories,
       nutrients: {
@@ -261,7 +261,7 @@ export function FoodSearch({ onAddFood, mealType = 'snack' }: FoodSearchProps) {
                 onClick={() => handleAddFood(selectedFood)}
                 disabled={selectedFood.pregnancySafety.safetyLevel === 'avoid'}
                 className="flex-1"
-                variant={selectedFood.pregnancySafety.safetyLevel === 'avoid' ? 'destructive' : 'default'}
+                variant={selectedFood.pregnancySafety.safetyLevel === 'avoid' ? 'danger' : 'primary'}
               >
                 <Plus className="w-4 h-4 mr-1" />
                 {selectedFood.pregnancySafety.safetyLevel === 'avoid' ? '섭취 권장하지 않음' : '식사에 추가'}

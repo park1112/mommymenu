@@ -7,7 +7,7 @@ import { QuickActionsWidget } from '@/components/dashboard/QuickActionsWidget';
 
 export default function DashboardPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-rose-50/30 via-pink-50/20 to-orange-50/30">
+    <div className="min-h-screen bg-gradient-to-br from-rose-50/30 via-pink-50/20 to-orange-50/30 dark:from-gray-900/90 dark:via-gray-900/95 dark:to-gray-800/90">
       <div className="p-4 lg:p-6 space-y-8">
         {/* Hero Section - Organic Asymmetric Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">

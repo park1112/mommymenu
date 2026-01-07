@@ -1,14 +1,15 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import Card, { CardContent, CardHeader, CardTitle } from '@/components/ui/card/Card'
 import Button from '@/components/ui/button/Button'
-import { 
+import {
   Calendar, Clock, UtensilsCrossed, Plus, Heart, Star,
   ChefHat, Timer, Users, BookOpen, Filter, Search, PlusCircle
 } from 'lucide-react'
 import { FoodSearch } from '@/components/food/FoodSearch'
-import { useNutrition } from '@/components/providers'
+import { useNutrition, useFavorites, recipes } from '@/components/providers'
 
 interface MealPlan {
   id: string
@@ -124,11 +125,13 @@ const aiRecommendations = [
 ]
 
 export default function MealsPage() {
-  const [selectedView, setSelectedView] = useState<'today' | 'week' | 'recipes' | 'search'>('today')
+  const router = useRouter()
+  const [selectedView, setSelectedView] = useState<'today' | 'week' | 'recipes' | 'search' | 'favorites'>('today')
   const [selectedMealType, setSelectedMealType] = useState<'all' | 'breakfast' | 'lunch' | 'dinner' | 'snack'>('all')
   const [showFoodSearch, setShowFoodSearch] = useState(false)
   const [currentMealType, setCurrentMealType] = useState<'breakfast' | 'lunch' | 'dinner' | 'snack'>('breakfast')
   const { mealEntries, getDailyProgress } = useNutrition()
+  const { isFavorite, toggleFavorite, getFavoriteRecipes } = useFavorites()
 
   const filteredMeals = selectedMealType === 'all' 
     ? todayMeals 
@@ -136,10 +139,10 @@ export default function MealsPage() {
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
-      case 'easy': return 'text-green-600 bg-green-100'
-      case 'medium': return 'text-yellow-600 bg-yellow-100'
-      case 'hard': return 'text-red-600 bg-red-100'
-      default: return 'text-gray-600 bg-gray-100'
+      case 'easy': return 'text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30'
+      case 'medium': return 'text-yellow-600 dark:text-yellow-400 bg-yellow-100 dark:bg-yellow-900/30'
+      case 'hard': return 'text-red-600 dark:text-red-400 bg-red-100 dark:bg-red-900/30'
+      default: return 'text-gray-600 dark:text-gray-400 bg-gray-100 dark:bg-gray-800'
     }
   }
 
@@ -158,14 +161,21 @@ export default function MealsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">식사 계획</h1>
-          <p className="text-gray-600 mt-1">임신 23주 3일 • AI가 추천하는 맞춤 식단</p>
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">식사 계획</h1>
+          <p className="text-gray-600 dark:text-gray-400 mt-1">임신 23주 3일 • AI가 추천하는 맞춤 식단</p>
         </div>
         <div className="flex gap-2">
-          <Button icon={<Search className="w-4 h-4" />} variant="outline">
+          <Button
+            icon={<Search className="w-4 h-4" />}
+            variant="outline"
+            onClick={() => setSelectedView('search')}
+          >
             레시피 검색
           </Button>
-          <Button icon={<Plus className="w-4 h-4" />}>
+          <Button
+            icon={<Plus className="w-4 h-4" />}
+            onClick={() => setSelectedView('week')}
+          >
             식단 생성
           </Button>
         </div>
@@ -174,15 +184,24 @@ export default function MealsPage() {
       {/* View Selection */}
       <Card>
         <CardContent className="p-4">
-          <div className="flex gap-2">
-            {(['today', 'week', 'recipes', 'search'] as const).map((view) => (
+          <div className="flex flex-wrap gap-2">
+            {(['today', 'week', 'recipes', 'favorites', 'search'] as const).map((view) => (
               <Button
                 key={view}
                 variant={selectedView === view ? 'primary' : 'outline'}
                 size="sm"
                 onClick={() => setSelectedView(view)}
               >
-                {view === 'today' ? '오늘' : view === 'week' ? '주간 계획' : view === 'recipes' ? 'AI 추천' : '음식 검색'}
+                {view === 'today' && '오늘'}
+                {view === 'week' && '주간 계획'}
+                {view === 'recipes' && 'AI 추천'}
+                {view === 'favorites' && (
+                  <span className="flex items-center gap-1">
+                    <Heart className="w-4 h-4" />
+                    찜한 레시피
+                  </span>
+                )}
+                {view === 'search' && '음식 검색'}
               </Button>
             ))}
           </div>
@@ -216,7 +235,7 @@ export default function MealsPage() {
                 <CardHeader className="pb-3">
                   <div className="flex justify-between items-start">
                     <div>
-                      <span className="text-sm text-gray-500">{meal.time}</span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">{meal.time}</span>
                       <CardTitle className="text-lg">{meal.name}</CardTitle>
                     </div>
                     <span className={`px-2 py-1 rounded-full text-xs font-medium ${getDifficultyColor(meal.difficulty)}`}>
@@ -225,17 +244,17 @@ export default function MealsPage() {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-4">
-                  <p className="text-gray-600 text-sm">{meal.description}</p>
-                  
+                  <p className="text-gray-600 dark:text-gray-400 text-sm">{meal.description}</p>
+
                   <div className="flex flex-wrap gap-1">
                     {meal.tags.map((tag, index) => (
-                      <span key={index} className="px-2 py-1 bg-pink-100 text-pink-700 text-xs rounded-full">
+                      <span key={index} className="px-2 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 text-xs rounded-full">
                         {tag}
                       </span>
                     ))}
                   </div>
 
-                  <div className="flex justify-between items-center text-sm text-gray-600">
+                  <div className="flex justify-between items-center text-sm text-gray-600 dark:text-gray-400">
                     <div className="flex items-center gap-1">
                       <Timer className="w-4 h-4" />
                       <span>{meal.prepTime}분</span>
@@ -248,29 +267,40 @@ export default function MealsPage() {
 
                   <div className="grid grid-cols-4 gap-2 text-xs">
                     <div className="text-center">
-                      <div className="font-semibold text-blue-600">{meal.nutrients.protein}g</div>
-                      <div className="text-gray-500">단백질</div>
+                      <div className="font-semibold text-blue-600 dark:text-blue-400">{meal.nutrients.protein}g</div>
+                      <div className="text-gray-500 dark:text-gray-400">단백질</div>
                     </div>
                     <div className="text-center">
-                      <div className="font-semibold text-yellow-600">{meal.nutrients.carbs}g</div>
-                      <div className="text-gray-500">탄수화물</div>
+                      <div className="font-semibold text-yellow-600 dark:text-yellow-400">{meal.nutrients.carbs}g</div>
+                      <div className="text-gray-500 dark:text-gray-400">탄수화물</div>
                     </div>
                     <div className="text-center">
-                      <div className="font-semibold text-purple-600">{meal.nutrients.fat}g</div>
-                      <div className="text-gray-500">지방</div>
+                      <div className="font-semibold text-purple-600 dark:text-purple-400">{meal.nutrients.fat}g</div>
+                      <div className="text-gray-500 dark:text-gray-400">지방</div>
                     </div>
                     <div className="text-center">
-                      <div className="font-semibold text-green-600">{meal.nutrients.fiber}g</div>
-                      <div className="text-gray-500">섬유질</div>
+                      <div className="font-semibold text-green-600 dark:text-green-400">{meal.nutrients.fiber}g</div>
+                      <div className="text-gray-500 dark:text-gray-400">섬유질</div>
                     </div>
                   </div>
 
                   <div className="flex gap-2">
-                    <Button variant="outline" size="sm" fullWidth icon={<BookOpen className="w-4 h-4" />}>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      fullWidth
+                      icon={<BookOpen className="w-4 h-4" />}
+                      onClick={() => router.push(`/dashboard/meals/recipe/${meal.id}`)}
+                    >
                       레시피 보기
                     </Button>
-                    <Button variant="outline" size="sm" className="px-3">
-                      <Heart className="w-4 h-4" />
+                    <Button
+                      variant={isFavorite(meal.id) ? 'primary' : 'outline'}
+                      size="sm"
+                      className={`px-3 ${isFavorite(meal.id) ? 'bg-pink-500 hover:bg-pink-600' : ''}`}
+                      onClick={() => toggleFavorite(meal.id)}
+                    >
+                      <Heart className={`w-4 h-4 ${isFavorite(meal.id) ? 'fill-current' : ''}`} />
                     </Button>
                   </div>
                 </CardContent>
@@ -292,20 +322,20 @@ export default function MealsPage() {
             <div className="overflow-x-auto">
               <table className="w-full border-collapse">
                 <thead>
-                  <tr className="border-b">
-                    <th className="text-left p-3 font-semibold">요일</th>
-                    <th className="text-left p-3 font-semibold">아침</th>
-                    <th className="text-left p-3 font-semibold">점심</th>
-                    <th className="text-left p-3 font-semibold">저녁</th>
+                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                    <th className="text-left p-3 font-semibold text-gray-900 dark:text-gray-100">요일</th>
+                    <th className="text-left p-3 font-semibold text-gray-900 dark:text-gray-100">아침</th>
+                    <th className="text-left p-3 font-semibold text-gray-900 dark:text-gray-100">점심</th>
+                    <th className="text-left p-3 font-semibold text-gray-900 dark:text-gray-100">저녁</th>
                   </tr>
                 </thead>
                 <tbody>
                   {weeklyPlan.map((day, index) => (
-                    <tr key={index} className="border-b hover:bg-gray-50">
-                      <td className="p-3 font-medium">{day.day}</td>
-                      <td className="p-3">{day.breakfast}</td>
-                      <td className="p-3">{day.lunch}</td>
-                      <td className="p-3">{day.dinner}</td>
+                    <tr key={index} className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-800">
+                      <td className="p-3 font-medium text-gray-900 dark:text-gray-100">{day.day}</td>
+                      <td className="p-3 text-gray-700 dark:text-gray-300">{day.breakfast}</td>
+                      <td className="p-3 text-gray-700 dark:text-gray-300">{day.lunch}</td>
+                      <td className="p-3 text-gray-700 dark:text-gray-300">{day.dinner}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -329,20 +359,20 @@ export default function MealsPage() {
                   <ChefHat className="w-5 h-5 text-green-500" />
                   {recommendation.title}
                 </CardTitle>
-                <p className="text-gray-600">{recommendation.description}</p>
+                <p className="text-gray-600 dark:text-gray-400">{recommendation.description}</p>
               </CardHeader>
               <CardContent>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  <span className="px-3 py-1 bg-blue-100 text-blue-700 text-sm rounded-full">
+                  <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-sm rounded-full">
                     {recommendation.type}
                   </span>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   {recommendation.recipes.map((recipe, recipeIndex) => (
-                    <div key={recipeIndex} className="border rounded-lg p-4 hover:shadow-sm transition-shadow">
-                      <h4 className="font-medium text-gray-900 mb-2">{recipe}</h4>
+                    <div key={recipeIndex} className="border border-gray-200 dark:border-gray-700 rounded-lg p-4 hover:shadow-sm transition-shadow">
+                      <h4 className="font-medium text-gray-900 dark:text-gray-100 mb-2">{recipe}</h4>
                       <div className="flex justify-between items-center">
-                        <div className="flex items-center gap-1 text-sm text-gray-600">
+                        <div className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400">
                           <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                           <span>4.8</span>
                         </div>
@@ -356,6 +386,84 @@ export default function MealsPage() {
               </CardContent>
             </Card>
           ))}
+        </div>
+      )}
+
+      {selectedView === 'favorites' && (
+        <div className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Heart className="w-5 h-5 text-pink-500" />
+                찜한 레시피
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {getFavoriteRecipes().length === 0 ? (
+                <div className="text-center py-12">
+                  <Heart className="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
+                  <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">
+                    아직 찜한 레시피가 없어요
+                  </h3>
+                  <p className="text-gray-500 dark:text-gray-400 mb-4">
+                    마음에 드는 레시피의 하트 버튼을 눌러 저장해보세요
+                  </p>
+                  <Button onClick={() => setSelectedView('today')}>
+                    레시피 둘러보기
+                  </Button>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {getFavoriteRecipes().map((recipe) => (
+                    <div
+                      key={recipe.id}
+                      className="border border-gray-200 dark:border-gray-700 rounded-xl p-4 hover:shadow-lg transition-shadow"
+                    >
+                      <div className="flex justify-between items-start mb-3">
+                        <div>
+                          <span className="text-xs px-2 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-full">
+                            {getMealTypeLabel(recipe.mealType)}
+                          </span>
+                        </div>
+                        <Button
+                          variant="primary"
+                          size="sm"
+                          className="px-2 bg-pink-500 hover:bg-pink-600"
+                          onClick={() => toggleFavorite(recipe.id)}
+                        >
+                          <Heart className="w-4 h-4 fill-current" />
+                        </Button>
+                      </div>
+                      <h4 className="font-semibold text-gray-900 dark:text-gray-100 mb-2">
+                        {recipe.name}
+                      </h4>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 line-clamp-2">
+                        {recipe.description}
+                      </p>
+                      <div className="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400 mb-3">
+                        <div className="flex items-center gap-1">
+                          <Timer className="w-4 h-4" />
+                          <span>{recipe.prepTime + recipe.cookTime}분</span>
+                        </div>
+                        <div className="flex items-center gap-1">
+                          <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                          <span>{recipe.rating}</span>
+                        </div>
+                      </div>
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        fullWidth
+                        onClick={() => router.push(`/dashboard/meals/recipe/${recipe.id}`)}
+                      >
+                        레시피 보기
+                      </Button>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
         </div>
       )}
 
@@ -408,19 +516,21 @@ export default function MealsPage() {
             <CardContent>
               <div className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-600">영양 점수</span>
-                  <span className="text-2xl font-bold text-green-600">{getDailyProgress()}점</span>
+                  <span className="text-gray-600 dark:text-gray-400">영양 점수</span>
+                  <span className="text-2xl font-bold text-green-600 dark:text-green-400">{getDailyProgress()}점</span>
                 </div>
                 <div className="space-y-2">
                   {mealEntries.slice(-5).map((entry, index) => (
-                    <div key={index} className="flex justify-between items-center p-2 bg-gray-50 rounded">
+                    <div key={index} className="flex justify-between items-center p-2 bg-gray-50 dark:bg-gray-800 rounded">
                       <div>
-                        <span className="font-medium">{entry.foodName}</span>
-                        <span className="text-sm text-gray-500 ml-2">
-                          {entry.quantity} {entry.unit}
-                        </span>
+                        <span className="font-medium text-gray-900 dark:text-gray-100">{entry.name}</span>
+                        {entry.quantity && entry.unit && (
+                          <span className="text-sm text-gray-500 dark:text-gray-400 ml-2">
+                            {entry.quantity} {entry.unit}
+                          </span>
+                        )}
                       </div>
-                      <span className="text-sm text-gray-600">{entry.calories}kcal</span>
+                      <span className="text-sm text-gray-600 dark:text-gray-400">{entry.calories}kcal</span>
                     </div>
                   ))}
                 </div>
@@ -437,23 +547,35 @@ export default function MealsPage() {
         </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="h-20 flex-col gap-2"
               onClick={() => setSelectedView('search')}
             >
               <PlusCircle className="w-6 h-6" />
               <span className="text-sm">음식 추가</span>
             </Button>
-            <Button variant="outline" className="h-20 flex-col gap-2">
+            <Button
+              variant="outline"
+              className="h-20 flex-col gap-2"
+              onClick={() => setSelectedView('week')}
+            >
               <Calendar className="w-6 h-6" />
               <span className="text-sm">식단 달력</span>
             </Button>
-            <Button variant="outline" className="h-20 flex-col gap-2">
+            <Button
+              variant="outline"
+              className="h-20 flex-col gap-2"
+              onClick={() => alert('가족 식단 기능은 곧 출시 예정입니다.')}
+            >
               <Users className="w-6 h-6" />
               <span className="text-sm">가족 식단</span>
             </Button>
-            <Button variant="outline" className="h-20 flex-col gap-2">
+            <Button
+              variant="outline"
+              className="h-20 flex-col gap-2"
+              onClick={() => setSelectedMealType('all')}
+            >
               <Filter className="w-6 h-6" />
               <span className="text-sm">맞춤 필터</span>
             </Button>

@@ -1,7 +1,7 @@
 'use client'
 
 import { MommyMenuLayout } from '@/components/layout/MommyMenuLayout'
-import { AuthProvider, NutritionProvider, PregnancyProvider } from '@/components/providers'
+import { AuthProvider, NutritionProvider, PregnancyProvider, RecipeProvider } from '@/components/providers'
 
 export default function DashboardLayout({
   children,
@@ -12,7 +12,9 @@ export default function DashboardLayout({
     <AuthProvider>
       <PregnancyProvider>
         <NutritionProvider>
-          <MommyMenuLayout>{children}</MommyMenuLayout>
+          <RecipeProvider>
+            <MommyMenuLayout>{children}</MommyMenuLayout>
+          </RecipeProvider>
         </NutritionProvider>
       </PregnancyProvider>
     </AuthProvider>

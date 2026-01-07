@@ -89,7 +89,7 @@ function WidgetSection() {
           <div className="grid gap-4">
             <PregnancyStatusWidget />
           </div>
-          <p className="text-sm text-gray-600 mt-4">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
             임신 주수, 태아 발달 상태, 체중 변화 등을 표시하는 위젯
           </p>
         </CardContent>
@@ -104,7 +104,7 @@ function WidgetSection() {
           <div className="grid gap-4">
             <NutritionStatusWidget />
           </div>
-          <p className="text-sm text-gray-600 mt-4">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
             일일 영양 섭취량, 버텄 영양소, 권장 섭취량 대비 진행 상태
           </p>
         </CardContent>
@@ -119,7 +119,7 @@ function WidgetSection() {
           <div className="grid gap-4">
             <MealTimelineWidget />
           </div>
-          <p className="text-sm text-gray-600 mt-4">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
             하루 식사 계획과 시간별 섭취 현황을 보여주는 타임라인
           </p>
         </CardContent>
@@ -134,7 +134,7 @@ function WidgetSection() {
           <div className="grid gap-4">
             <HealthMetricsWidget />
           </div>
-          <p className="text-sm text-gray-600 mt-4">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
             체중, 혈압, 혈당 등 주요 건강 지표를 추적하고 관리
           </p>
         </CardContent>
@@ -149,7 +149,7 @@ function WidgetSection() {
           <div className="grid gap-4">
             <AIRecommendationWidget />
           </div>
-          <p className="text-sm text-gray-600 mt-4">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
             개인화된 AI 추천 식단과 영양 정보를 제공
           </p>
         </CardContent>
@@ -164,7 +164,7 @@ function WidgetSection() {
           <div className="grid gap-4">
             <QuickActionsWidget />
           </div>
-          <p className="text-sm text-gray-600 mt-4">
+          <p className="text-sm text-gray-600 dark:text-gray-400 mt-4">
             자주 사용하는 기능들에 빠른 접근을 제공하는 버튼 모음
           </p>
         </CardContent>
@@ -458,9 +458,9 @@ function CardSection() {
               <AvatarFallback className="bg-pink-100 text-pink-600 text-lg font-semibold">임산</AvatarFallback>
             </Avatar>
             <div>
-              <h3 className="font-semibold text-lg">김임산님</h3>
-              <p className="text-gray-600">임신 23주 3일</p>
-              <p className="text-sm text-gray-500">마지막 접속: 2시간 전</p>
+              <h3 className="font-semibold text-lg text-gray-900 dark:text-gray-100">김임산님</h3>
+              <p className="text-gray-600 dark:text-gray-400">임신 23주 3일</p>
+              <p className="text-sm text-gray-500 dark:text-gray-500">마지막 접속: 2시간 전</p>
             </div>
           </div>
         </CardContent>

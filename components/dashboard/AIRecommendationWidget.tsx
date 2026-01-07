@@ -46,11 +46,11 @@ export function AIRecommendationWidget() {
   const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'high':
-        return 'from-rose-50/80 to-pink-50/60 border-rose-200/60 text-rose-800'
+        return 'from-rose-50/80 to-pink-50/60 dark:from-rose-900/30 dark:to-pink-900/20 border-rose-200/60 dark:border-rose-800/40 text-rose-800 dark:text-rose-200'
       case 'medium':
-        return 'from-amber-50/80 to-orange-50/60 border-amber-200/60 text-amber-800'
+        return 'from-amber-50/80 to-orange-50/60 dark:from-amber-900/30 dark:to-orange-900/20 border-amber-200/60 dark:border-amber-800/40 text-amber-800 dark:text-amber-200'
       default:
-        return 'from-emerald-50/80 to-green-50/60 border-emerald-200/60 text-emerald-800'
+        return 'from-emerald-50/80 to-green-50/60 dark:from-emerald-900/30 dark:to-green-900/20 border-emerald-200/60 dark:border-emerald-800/40 text-emerald-800 dark:text-emerald-200'
     }
   }
 
@@ -77,8 +77,8 @@ export function AIRecommendationWidget() {
               <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full animate-pulse" />
             </div>
             <div>
-              <span className="text-lg font-semibold text-purple-800">AI 추천</span>
-              <p className="text-xs text-purple-600 font-normal">개인 맞춤형 조언</p>
+              <span className="text-lg font-semibold text-purple-800 dark:text-purple-300">AI 추천</span>
+              <p className="text-xs text-purple-600 dark:text-purple-400 font-normal">개인 맞춤형 조언</p>
             </div>
           </div>
           <Button
@@ -86,7 +86,7 @@ export function AIRecommendationWidget() {
             size="sm"
             onClick={loadRecommendations}
             disabled={isLoading}
-            className="text-purple-600 hover:bg-purple-50"
+            className="text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/30"
           >
             <RefreshCw className={`h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} />
           </Button>
@@ -96,7 +96,7 @@ export function AIRecommendationWidget() {
       <CardContent className="space-y-4">
         {isLoading ? (
           <div className="text-center py-6">
-            <div className="inline-flex items-center gap-2 text-purple-600">
+            <div className="inline-flex items-center gap-2 text-purple-600 dark:text-purple-400">
               <Brain className="h-5 w-5 animate-pulse" />
               <span className="text-sm font-medium">AI가 분석하고 있어요...</span>
             </div>
@@ -144,10 +144,10 @@ export function AIRecommendationWidget() {
             ))}
 
             <div className="pt-3">
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="w-full border-purple-200 text-purple-700 hover:bg-purple-50 organic-rounded"
+              <Button
+                variant="outline"
+                size="sm"
+                className="w-full border-purple-200 dark:border-purple-700 text-purple-700 dark:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/30 organic-rounded"
                 glow={true}
               >
                 더 많은 추천 보기
@@ -157,14 +157,14 @@ export function AIRecommendationWidget() {
 
             {/* Daily insight */}
             <div className="relative">
-              <div className="p-4 bg-gradient-to-br from-pink-50/80 via-purple-50/60 to-blue-50/40 organic-rounded border border-pink-100/50 organic-shadow">
+              <div className="p-4 bg-gradient-to-br from-pink-50/80 via-purple-50/60 to-blue-50/40 dark:from-pink-900/30 dark:via-purple-900/20 dark:to-blue-900/20 organic-rounded border border-pink-100/50 dark:border-pink-800/30 organic-shadow">
                 <div className="flex items-center gap-2 mb-2">
-                  <Sparkles className="h-4 w-4 text-pink-500 animate-pulse" />
-                  <span className="text-sm font-semibold text-pink-700">오늘의 인사이트</span>
+                  <Sparkles className="h-4 w-4 text-pink-500 dark:text-pink-400 animate-pulse" />
+                  <span className="text-sm font-semibold text-pink-700 dark:text-pink-300">오늘의 인사이트</span>
                 </div>
-                <p className="text-xs text-pink-600 leading-relaxed">
+                <p className="text-xs text-pink-600 dark:text-pink-300 leading-relaxed">
                   임신 <span className="font-bold">{pregnancyInfo.currentWeek}주차</span>에는{" "}
-                  <span className="font-semibold text-rose-700">
+                  <span className="font-semibold text-rose-700 dark:text-rose-400">
                     {pregnancyInfo.trimester === 1 ? '엽산과 비타민 B12' :
                      pregnancyInfo.trimester === 2 ? '칼슘과 단백질' :
                      '철분과 단백질'}
@@ -172,15 +172,15 @@ export function AIRecommendationWidget() {
                   섭취가 특히 중요해요. 꾸준한 관리로 건강한 임신을 이어가세요! 💕
                 </p>
               </div>
-              
+
               <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-br from-pink-400 to-purple-400 rounded-full animate-pulse" />
             </div>
           </>
         ) : (
           <div className="text-center py-6">
-            <Brain className="h-8 w-8 text-purple-300 mx-auto mb-2" />
-            <p className="text-sm text-purple-600">추천을 불러올 수 없어요</p>
-            <p className="text-xs text-purple-500 mt-1">잠시 후 다시 시도해주세요</p>
+            <Brain className="h-8 w-8 text-purple-300 dark:text-purple-600 mx-auto mb-2" />
+            <p className="text-sm text-purple-600 dark:text-purple-400">추천을 불러올 수 없어요</p>
+            <p className="text-xs text-purple-500 dark:text-purple-500 mt-1">잠시 후 다시 시도해주세요</p>
           </div>
         )}
       </CardContent>

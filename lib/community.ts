@@ -63,7 +63,7 @@ export const samplePosts: CommunityPost[] = [
     id: '1',
     authorId: 'user1',
     authorName: '행복한예비맘',
-    authorAvatar: '',
+    authorAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=happymom&backgroundColor=ffd5dc',
     authorWeek: 24,
     title: '입덧 완화에 도움된 음식 공유해요!',
     content: '안녕하세요! 24주차 예비맘입니다. 초기에 입덧이 너무 심해서 고생했는데, 생강차와 레몬워터가 정말 도움이 많이 됐어요. 특히 아침에 일어나자마자 따뜻한 생강차 한 잔이 속을 진정시켜주더라구요. 혹시 입덧으로 고생하시는 분들 계시면 한번 시도해보세요!',
@@ -75,6 +75,7 @@ export const samplePosts: CommunityPost[] = [
         id: 'c1',
         authorId: 'user2',
         authorName: '쑥쑥이맘',
+        authorAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=ssukssukmom&backgroundColor=c0aede',
         content: '저도 생강차 도움 많이 받았어요! 꿀 넣어서 마시니 더 좋더라구요 ☺️',
         likes: 5,
         createdAt: new Date('2024-03-10T10:30:00'),
@@ -84,6 +85,7 @@ export const samplePosts: CommunityPost[] = [
         id: 'c2',
         authorId: 'user3',
         authorName: '건강한아기',
+        authorAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=healthybaby&backgroundColor=b6e3f4',
         content: '좋은 정보 감사합니다! 저는 크래커도 도움이 됐어요',
         likes: 3,
         createdAt: new Date('2024-03-10T11:00:00'),
@@ -99,7 +101,7 @@ export const samplePosts: CommunityPost[] = [
     id: '2',
     authorId: 'user4',
     authorName: '영양만점맘',
-    authorAvatar: '',
+    authorAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=nutritionmom&backgroundColor=ffdfbf',
     authorWeek: 28,
     title: '임산부 철분 보충 레시피 - 시금치 소고기 볶음',
     content: `오늘은 철분 보충에 좋은 시금치 소고기 볶음 레시피를 공유할게요!
@@ -130,6 +132,7 @@ export const samplePosts: CommunityPost[] = [
         id: 'c3',
         authorId: 'user5',
         authorName: '요리초보맘',
+        authorAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=cookingmom&backgroundColor=d1d4f9',
         content: '와 너무 맛있어보여요! 오늘 저녁에 해봐야겠어요 😋',
         likes: 8,
         createdAt: new Date('2024-03-10T14:00:00'),
@@ -145,7 +148,7 @@ export const samplePosts: CommunityPost[] = [
     id: '3',
     authorId: 'user6',
     authorName: '첫째맘이',
-    authorAvatar: '',
+    authorAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=firstmom&backgroundColor=ffd5dc',
     authorWeek: 32,
     title: '붓기 관리 어떻게 하고 계신가요?',
     content: '32주 접어들면서 발목이랑 손가락 붓기가 심해지네요 ㅠㅠ 압박스타킹 신고 있고, 짠 음식도 피하고 있는데 다른 분들은 어떻게 관리하고 계신지 궁금해요. 좋은 방법 있으면 공유 부탁드려요!',
@@ -157,6 +160,7 @@ export const samplePosts: CommunityPost[] = [
         id: 'c4',
         authorId: 'user7',
         authorName: '둘째준비중',
+        authorAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=secondbaby&backgroundColor=c0aede',
         content: '저는 자기 전에 다리 벽에 올리고 15분 정도 있어요. 도움 많이 돼요!',
         likes: 12,
         createdAt: new Date('2024-03-10T16:00:00'),
@@ -166,6 +170,7 @@ export const samplePosts: CommunityPost[] = [
         id: 'c5',
         authorId: 'user8',
         authorName: '건강관리중',
+        authorAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=healthycare&backgroundColor=b6e3f4',
         content: '칼륨이 많은 바나나, 아보카도 먹으면 좋다고 해서 매일 먹고 있어요',
         likes: 7,
         createdAt: new Date('2024-03-10T16:30:00'),
@@ -181,7 +186,7 @@ export const samplePosts: CommunityPost[] = [
     id: '4',
     authorId: 'user9',
     authorName: '운동하는맘',
-    authorAvatar: '',
+    authorAvatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=sportymom&backgroundColor=ffdfbf',
     authorWeek: 20,
     title: '임산부 요가 3개월 후기',
     content: '임신 확인 후 바로 시작한 임산부 요가 3개월째 후기입니다! 처음엔 몸이 뻣뻣해서 힘들었는데 지금은 훨씬 유연해졌어요. 특히 허리 통증이 많이 개선됐고, 숙면에도 도움이 되더라구요. 출산 때까지 꾸준히 할 예정이에요!',
@@ -237,22 +242,79 @@ export const sampleGroups: CommunityGroup[] = [
 
 // 커뮤니티 관리 클래스
 export class CommunityManager {
-  private posts: CommunityPost[] = samplePosts
-  private groups: CommunityGroup[] = sampleGroups
+  private posts: CommunityPost[] = []
+  private groups: CommunityGroup[] = []
+  private isLoaded: boolean = false
+
+  constructor() {
+    this.loadFromStorage()
+  }
+
+  // LocalStorage에서 데이터 로드
+  private loadFromStorage(): void {
+    if (typeof window === 'undefined') {
+      this.posts = samplePosts
+      this.groups = sampleGroups
+      return
+    }
+
+    const savedPosts = localStorage.getItem('mommymenu-community-posts')
+    const savedGroups = localStorage.getItem('mommymenu-community-groups')
+
+    if (savedPosts) {
+      try {
+        const parsed = JSON.parse(savedPosts)
+        // Date 객체 복원
+        this.posts = parsed.map((post: CommunityPost) => ({
+          ...post,
+          createdAt: new Date(post.createdAt),
+          updatedAt: new Date(post.updatedAt),
+          comments: post.comments.map((comment: Comment) => ({
+            ...comment,
+            createdAt: new Date(comment.createdAt)
+          }))
+        }))
+      } catch (e) {
+        this.posts = samplePosts
+      }
+    } else {
+      this.posts = samplePosts
+    }
+
+    if (savedGroups) {
+      try {
+        this.groups = JSON.parse(savedGroups)
+      } catch (e) {
+        this.groups = sampleGroups
+      }
+    } else {
+      this.groups = sampleGroups
+    }
+
+    this.isLoaded = true
+  }
+
+  // LocalStorage에 데이터 저장
+  private saveToStorage(): void {
+    if (typeof window === 'undefined') return
+
+    localStorage.setItem('mommymenu-community-posts', JSON.stringify(this.posts))
+    localStorage.setItem('mommymenu-community-groups', JSON.stringify(this.groups))
+  }
 
   // 게시글 목록 가져오기
   getPosts(category?: PostCategory, limit?: number): CommunityPost[] {
     let filteredPosts = this.posts
-    
+
     if (category) {
       filteredPosts = filteredPosts.filter(post => post.category === category)
     }
-    
+
     if (limit) {
       filteredPosts = filteredPosts.slice(0, limit)
     }
-    
-    return filteredPosts.sort((a, b) => 
+
+    return filteredPosts.sort((a, b) =>
       b.createdAt.getTime() - a.createdAt.getTime()
     )
   }
@@ -272,8 +334,9 @@ export class CommunityManager {
       createdAt: new Date(),
       updatedAt: new Date()
     }
-    
+
     this.posts.unshift(newPost)
+    this.saveToStorage()
     return newPost
   }
 
@@ -283,6 +346,7 @@ export class CommunityManager {
     if (post) {
       post.isLiked = !post.isLiked
       post.likes += post.isLiked ? 1 : -1
+      this.saveToStorage()
       return post.isLiked
     }
     return false
@@ -293,6 +357,7 @@ export class CommunityManager {
     const post = this.posts.find(p => p.id === postId)
     if (post) {
       post.isBookmarked = !post.isBookmarked
+      this.saveToStorage()
       return post.isBookmarked
     }
     return false
@@ -309,9 +374,25 @@ export class CommunityManager {
         createdAt: new Date()
       }
       post.comments.push(newComment)
+      this.saveToStorage()
       return newComment
     }
     return null
+  }
+
+  // 댓글 좋아요 토글
+  toggleCommentLike(postId: string, commentId: string): boolean {
+    const post = this.posts.find(p => p.id === postId)
+    if (post) {
+      const comment = post.comments.find(c => c.id === commentId)
+      if (comment) {
+        comment.isLiked = !comment.isLiked
+        comment.likes += comment.isLiked ? 1 : -1
+        this.saveToStorage()
+        return comment.isLiked
+      }
+    }
+    return false
   }
 
   // 그룹 목록 가져오기
@@ -328,6 +409,7 @@ export class CommunityManager {
     if (group) {
       group.isJoined = !group.isJoined
       group.memberCount += group.isJoined ? 1 : -1
+      this.saveToStorage()
       return group.isJoined
     }
     return false

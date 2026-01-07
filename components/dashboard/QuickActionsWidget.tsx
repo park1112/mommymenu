@@ -75,7 +75,7 @@ export function QuickActionsWidget() {
         <CardHeader>
           <CardTitle className="flex items-center space-x-2">
             <span className="text-2xl">⚡</span>
-            <span>빠른 실행</span>
+            <span className="text-gray-900 dark:text-gray-100">빠른 실행</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -97,12 +97,12 @@ export function QuickActionsWidget() {
           </div>
 
           {/* Emergency contact */}
-          <div className="mt-4 p-3 bg-red-50 rounded-lg border border-red-200">
+          <div className="mt-4 p-3 bg-red-50 dark:bg-red-900/30 rounded-lg border border-red-200 dark:border-red-800">
             <div className="flex items-center space-x-2">
-              <span className="text-red-600">🚨</span>
+              <span className="text-red-600 dark:text-red-400">🚨</span>
               <div className="flex-1">
-                <div className="text-sm font-medium text-red-700">응급상황</div>
-                <div className="text-xs text-red-600">24시간 상담 가능</div>
+                <div className="text-sm font-medium text-red-700 dark:text-red-300">응급상황</div>
+                <div className="text-xs text-red-600 dark:text-red-400">24시간 상담 가능</div>
               </div>
               <Button size="sm" className="bg-red-600 hover:bg-red-700">
                 전화하기

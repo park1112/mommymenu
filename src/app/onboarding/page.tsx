@@ -35,21 +35,21 @@ export default function OnboardingPage() {
             <Baby className="w-16 h-16 text-pink-600" />
           </div>
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
               AI 기반 맞춤 영양 관리
             </h2>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
               임신 주수와 개인 건강 상태에 맞는 식단을 추천받고,
               전문가의 검증된 정보로 안전하고 건강한 임신을 준비하세요.
             </p>
             <div className="grid grid-cols-2 gap-4 mt-6">
-              <div className="text-center p-4 bg-pink-50 rounded-lg">
-                <div className="text-2xl font-bold text-pink-600">10,000+</div>
-                <div className="text-sm text-gray-600">만족한 예비엄마</div>
+              <div className="text-center p-4 bg-pink-50 dark:bg-pink-900/20 rounded-lg">
+                <div className="text-2xl font-bold text-pink-600 dark:text-pink-400">10,000+</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">만족한 예비엄마</div>
               </div>
-              <div className="text-center p-4 bg-green-50 rounded-lg">
-                <div className="text-2xl font-bold text-green-600">95%</div>
-                <div className="text-sm text-gray-600">영양 목표 달성률</div>
+              <div className="text-center p-4 bg-green-50 dark:bg-green-900/20 rounded-lg">
+                <div className="text-2xl font-bold text-green-600 dark:text-green-400">95%</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">영양 목표 달성률</div>
               </div>
             </div>
           </div>
@@ -67,26 +67,26 @@ export default function OnboardingPage() {
             <Utensils className="w-16 h-16 text-green-600" />
           </div>
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
               똑똑한 AI 영양사
             </h2>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
               임신 단계별 필요 영양소를 분석하고,
               개인의 취향과 알레르기 정보를 고려한
               맞춤형 식단을 매일 추천해드려요.
             </p>
             <div className="space-y-3">
-              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+              <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                 <CheckCircle className="w-5 h-5 text-green-500" />
-                <span className="text-sm">임신 주수별 필수 영양소 관리</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">임신 주수별 필수 영양소 관리</span>
               </div>
-              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+              <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                 <CheckCircle className="w-5 h-5 text-green-500" />
-                <span className="text-sm">개인 취향 반영 레시피 추천</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">개인 취향 반영 레시피 추천</span>
               </div>
-              <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+              <div className="flex items-center gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg">
                 <CheckCircle className="w-5 h-5 text-green-500" />
-                <span className="text-sm">알레르기·주의식품 자동 필터링</span>
+                <span className="text-sm text-gray-700 dark:text-gray-300">알레르기·주의식품 자동 필터링</span>
               </div>
             </div>
           </div>
@@ -104,32 +104,32 @@ export default function OnboardingPage() {
             <Target className="w-16 h-16 text-blue-600" />
           </div>
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
               과학적 영양 분석
             </h2>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
               섭취한 음식을 기록하면 AI가 실시간으로 분석하여
               부족한 영양소를 알려주고 개선 방안을 제시해드려요.
             </p>
-            
+
             {/* Mock Nutrition Chart */}
-            <div className="bg-white border rounded-xl p-4 shadow-sm">
+            <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4 shadow-sm">
               <div className="flex justify-between items-center mb-3">
-                <span className="text-sm font-medium">오늘의 영양 현황</span>
-                <span className="text-xs text-green-600 font-medium">87% 달성</span>
+                <span className="text-sm font-medium text-gray-900 dark:text-gray-100">오늘의 영양 현황</span>
+                <span className="text-xs text-green-600 dark:text-green-400 font-medium">87% 달성</span>
               </div>
               <div className="space-y-2">
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-gray-700 dark:text-gray-300">
                   <span>칼로리</span>
                   <span>1,850 / 2,200 kcal</span>
                 </div>
                 <Progress value={84} className="h-2" />
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-gray-700 dark:text-gray-300">
                   <span>엽산</span>
                   <span>350 / 400 mcg</span>
                 </div>
                 <Progress value={87} className="h-2" />
-                <div className="flex justify-between text-xs">
+                <div className="flex justify-between text-xs text-gray-700 dark:text-gray-300">
                   <span>철분</span>
                   <span>18 / 27 mg</span>
                 </div>
@@ -151,33 +151,33 @@ export default function OnboardingPage() {
             <Users className="w-16 h-16 text-purple-600" />
           </div>
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
               함께하는 임신 여정
             </h2>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
               비슷한 시기의 예비엄마들과 경험을 공유하고,
               전문가의 조언을 받으며 안전하고 즐거운
               임신 기간을 보내세요.
             </p>
-            
+
             {/* Mock Community Posts */}
             <div className="space-y-3">
-              <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg text-left">
-                <div className="w-8 h-8 bg-pink-200 rounded-full flex items-center justify-center text-xs font-semibold text-pink-700">
+              <div className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg text-left">
+                <div className="w-8 h-8 bg-pink-200 dark:bg-pink-900/50 rounded-full flex items-center justify-center text-xs font-semibold text-pink-700 dark:text-pink-300">
                   김
                 </div>
                 <div className="flex-1">
-                  <div className="text-sm font-medium">김미영님 (28주)</div>
-                  <div className="text-xs text-gray-600">입덧 완화에 도움된 음식들 공유해요! 🤗</div>
+                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100">김미영님 (28주)</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">입덧 완화에 도움된 음식들 공유해요! 🤗</div>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg text-left">
-                <div className="w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center text-xs font-semibold text-blue-700">
+              <div className="flex items-start gap-3 p-3 bg-gray-50 dark:bg-gray-800 rounded-lg text-left">
+                <div className="w-8 h-8 bg-blue-200 dark:bg-blue-900/50 rounded-full flex items-center justify-center text-xs font-semibold text-blue-700 dark:text-blue-300">
                   박
                 </div>
                 <div className="flex-1">
-                  <div className="text-sm font-medium">박지은님 (32주)</div>
-                  <div className="text-xs text-gray-600">임신 중 운동 루틴 어떻게 하시나요? 💪</div>
+                  <div className="text-sm font-medium text-gray-900 dark:text-gray-100">박지은님 (32주)</div>
+                  <div className="text-xs text-gray-600 dark:text-gray-400">임신 중 운동 루틴 어떻게 하시나요? 💪</div>
                 </div>
               </div>
             </div>
@@ -196,32 +196,32 @@ export default function OnboardingPage() {
             <Heart className="w-16 h-16 text-pink-600" />
           </div>
           <div className="space-y-4">
-            <h2 className="text-2xl font-bold text-gray-900">
+            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
               환영합니다! 🎉
             </h2>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
               MommyMenu가 임신부터 출산까지
               건강하고 행복한 여정을 함께하겠습니다.
               지금 바로 시작해보세요!
             </p>
-            
-            <div className="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-6 border border-pink-200">
+
+            <div className="bg-gradient-to-r from-pink-50 to-rose-50 dark:from-pink-900/30 dark:to-rose-900/20 rounded-xl p-6 border border-pink-200 dark:border-pink-800">
               <div className="flex items-center justify-center gap-2 mb-3">
-                <BookOpen className="w-5 h-5 text-pink-600" />
-                <span className="font-semibold text-pink-800">첫 걸음 가이드</span>
+                <BookOpen className="w-5 h-5 text-pink-600 dark:text-pink-400" />
+                <span className="font-semibold text-pink-800 dark:text-pink-300">첫 걸음 가이드</span>
               </div>
               <div className="space-y-2 text-sm">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>프로필에서 임신 정보를 완성해주세요</span>
+                  <span className="text-gray-700 dark:text-gray-300">프로필에서 임신 정보를 완성해주세요</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>오늘의 첫 식사를 기록해보세요</span>
+                  <span className="text-gray-700 dark:text-gray-300">오늘의 첫 식사를 기록해보세요</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-green-500" />
-                  <span>AI 추천 식단을 확인해보세요</span>
+                  <span className="text-gray-700 dark:text-gray-300">AI 추천 식단을 확인해보세요</span>
                 </div>
               </div>
             </div>
@@ -260,13 +260,13 @@ export default function OnboardingPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
       <div className="w-full max-w-2xl">
         {/* Progress Bar */}
         <div className="mb-8">
           <div className="flex justify-between items-center mb-2">
-            <span className="text-sm text-gray-600">진행률</span>
-            <span className="text-sm text-gray-600">{currentStep} / {steps.length}</span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">진행률</span>
+            <span className="text-sm text-gray-600 dark:text-gray-400">{currentStep} / {steps.length}</span>
           </div>
           <Progress value={progress} className="h-2" />
         </div>

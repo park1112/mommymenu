@@ -71,8 +71,8 @@ export function NutritionStatusWidget() {
             <div className="absolute -top-1 -right-1 w-4 h-4 bg-gradient-to-br from-pink-400 to-rose-400 rounded-full animate-pulse" />
           </div>
           <div>
-            <span className="text-lg font-semibold text-emerald-800">영양 현황</span>
-            <p className="text-xs text-emerald-600 font-normal">오늘의 건강 지표</p>
+            <span className="text-lg font-semibold text-emerald-800 dark:text-emerald-300">영양 현황</span>
+            <p className="text-xs text-emerald-600 dark:text-emerald-400 font-normal">오늘의 건강 지표</p>
           </div>
         </CardTitle>
       </CardHeader>
@@ -85,11 +85,11 @@ export function NutritionStatusWidget() {
               {Math.round(nutritionScore)}
             </div>
             <div className="absolute -top-2 -right-8">
-              <span className="text-lg font-medium text-gray-500">%</span>
+              <span className="text-lg font-medium text-gray-500 dark:text-gray-400">%</span>
             </div>
           </div>
-          
-          <div className="text-sm text-gray-600 font-medium mb-3">종합 영양 점수</div>
+
+          <div className="text-sm text-gray-600 dark:text-gray-400 font-medium mb-3">종합 영양 점수</div>
           <div className="relative">
             <Progress 
               value={nutritionScore}
@@ -105,32 +105,32 @@ export function NutritionStatusWidget() {
         {/* Nutrient Breakdown */}
         <div className="space-y-4">
           <div className="flex items-center gap-2 mb-3">
-            <Heart className="w-4 h-4 text-pink-500" />
-            <span className="text-sm font-semibold text-gray-700">핵심 영양소</span>
+            <Heart className="w-4 h-4 text-pink-500 dark:text-pink-400" />
+            <span className="text-sm font-semibold text-gray-700 dark:text-gray-300">핵심 영양소</span>
           </div>
           
           {keyNutrients.map((nutrient, index) => (
             <div key={nutrient.name} className="group">
               <div className="flex items-center justify-between mb-2">
                 <div className="flex items-center gap-2.5">
-                  <div className={`w-8 h-8 rounded-lg ${nutrient.bgColor} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                  <div className={`w-8 h-8 rounded-lg ${nutrient.bgColor} dark:bg-opacity-20 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
                     <div className={nutrient.textColor}>
                       {nutrient.icon}
                     </div>
                   </div>
-                  <span className="text-sm font-medium text-gray-700">{nutrient.name}</span>
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{nutrient.name}</span>
                 </div>
-                
+
                 <div className="text-right">
-                  <span className="text-sm font-bold tabular-nums text-gray-800">
+                  <span className="text-sm font-bold tabular-nums text-gray-800 dark:text-gray-200">
                     {formatPercentage(nutrient.value)}%
                   </span>
                 </div>
               </div>
-              
+
               <div className="relative">
-                <div className="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden border border-gray-200">
-                  <div 
+                <div className="w-full bg-gray-100 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden border border-gray-200 dark:border-gray-600">
+                  <div
                     className={`h-full bg-gradient-to-r ${nutrient.color} rounded-full transition-all duration-700 ease-out relative overflow-hidden`}
                     style={{ width: `${Math.min(nutrient.value, 100)}%` }}
                   >
@@ -144,16 +144,16 @@ export function NutritionStatusWidget() {
 
         {/* Today's Goal */}
         <div className="relative">
-          <div className="bg-gradient-to-br from-pink-50/80 via-rose-50/60 to-orange-50/80 organic-rounded p-4 border border-pink-100/50 organic-shadow">
+          <div className="bg-gradient-to-br from-pink-50/80 via-rose-50/60 to-orange-50/80 dark:from-pink-900/30 dark:via-rose-900/20 dark:to-orange-900/20 organic-rounded p-4 border border-pink-100/50 dark:border-pink-800/30 organic-shadow">
             <div className="flex items-center gap-2 mb-2">
-              <Sparkles className="w-4 h-4 text-pink-500" />
-              <span className="text-sm font-semibold text-pink-700">오늘의 목표</span>
+              <Sparkles className="w-4 h-4 text-pink-500 dark:text-pink-400" />
+              <span className="text-sm font-semibold text-pink-700 dark:text-pink-300">오늘의 목표</span>
             </div>
-            <div className="text-sm font-medium text-pink-800 leading-relaxed">
+            <div className="text-sm font-medium text-pink-800 dark:text-pink-200 leading-relaxed">
               {todayRecommendation}
             </div>
           </div>
-          
+
           <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-br from-pink-400 to-rose-400 rounded-full animate-pulse" />
         </div>
       </CardContent>

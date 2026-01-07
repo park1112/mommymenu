@@ -86,9 +86,9 @@ export function NotificationCenter() {
 
   const getPriorityColor = (priority: string) => {
     switch (priority) {
-      case 'high': return 'border-red-500 bg-red-50'
-      case 'medium': return 'border-yellow-500 bg-yellow-50'
-      default: return 'border-gray-300 bg-gray-50'
+      case 'high': return 'border-red-500 bg-red-50 dark:bg-red-950'
+      case 'medium': return 'border-yellow-500 bg-yellow-50 dark:bg-yellow-950'
+      default: return 'border-gray-300 bg-gray-50 dark:bg-gray-800'
     }
   }
 
@@ -97,9 +97,9 @@ export function NotificationCenter() {
       {/* 알림 벨 버튼 */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 hover:bg-gray-100 rounded-full transition-colors"
+        className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors"
       >
-        <Bell className="h-5 w-5 text-gray-600" />
+        <Bell className="h-5 w-5 text-gray-600 dark:text-gray-400" />
         {unreadCount > 0 && (
           <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
             {unreadCount > 9 ? '9+' : unreadCount}
@@ -119,25 +119,25 @@ export function NotificationCenter() {
           {/* 알림 드롭다운 */}
           <Card className="absolute right-0 mt-2 w-96 max-h-[600px] shadow-xl z-50">
             {/* 헤더 */}
-            <div className="p-4 border-b">
+            <div className="p-4 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center justify-between mb-2">
-                <h3 className="font-semibold text-lg">알림</h3>
+                <h3 className="font-semibold text-lg text-gray-900 dark:text-gray-100">알림</h3>
                 <button
                   onClick={() => setIsOpen(false)}
-                  className="p-1 hover:bg-gray-100 rounded"
+                  className="p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
                 >
-                  <X className="h-4 w-4" />
+                  <X className="h-4 w-4 text-gray-600 dark:text-gray-400" />
                 </button>
               </div>
-              
+
               {/* 탭 */}
               <div className="flex gap-2">
                 <button
                   onClick={() => setActiveTab('notifications')}
                   className={`flex-1 py-2 px-3 rounded text-sm font-medium transition-colors ${
-                    activeTab === 'notifications' 
-                      ? 'bg-pink-500 text-white' 
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    activeTab === 'notifications'
+                      ? 'bg-pink-500 text-white'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                   }`}
                 >
                   알림 ({notifications.length})
@@ -145,9 +145,9 @@ export function NotificationCenter() {
                 <button
                   onClick={() => setActiveTab('settings')}
                   className={`flex-1 py-2 px-3 rounded text-sm font-medium transition-colors ${
-                    activeTab === 'settings' 
-                      ? 'bg-pink-500 text-white' 
-                      : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                    activeTab === 'settings'
+                      ? 'bg-pink-500 text-white'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                   }`}
                 >
                   <Settings className="h-4 w-4 inline mr-1" />
@@ -161,28 +161,28 @@ export function NotificationCenter() {
               {activeTab === 'notifications' ? (
                 <>
                   {notifications.length > 0 && unreadCount > 0 && (
-                    <div className="p-2 border-b">
+                    <div className="p-2 border-b border-gray-200 dark:border-gray-700">
                       <button
                         onClick={handleMarkAllAsRead}
-                        className="text-xs text-pink-600 hover:text-pink-700"
+                        className="text-xs text-pink-600 dark:text-pink-400 hover:text-pink-700 dark:hover:text-pink-300"
                       >
                         모두 읽음 처리
                       </button>
                     </div>
                   )}
-                  
+
                   {notifications.length === 0 ? (
-                    <div className="p-8 text-center text-gray-500">
-                      <Bell className="h-12 w-12 mx-auto mb-2 text-gray-300" />
+                    <div className="p-8 text-center text-gray-500 dark:text-gray-400">
+                      <Bell className="h-12 w-12 mx-auto mb-2 text-gray-300 dark:text-gray-600" />
                       <p>새로운 알림이 없습니다</p>
                     </div>
                   ) : (
-                    <div className="divide-y">
+                    <div className="divide-y divide-gray-200 dark:divide-gray-700">
                       {notifications.map((notification) => (
                         <div
                           key={notification.id}
-                          className={`p-4 hover:bg-gray-50 transition-colors ${
-                            !notification.isRead ? 'bg-blue-50' : ''
+                          className={`p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors ${
+                            !notification.isRead ? 'bg-blue-50 dark:bg-blue-950' : ''
                           }`}
                         >
                           <div className="flex items-start space-x-3">
@@ -193,14 +193,14 @@ export function NotificationCenter() {
                               <div className="flex items-start justify-between">
                                 <div className="flex-1">
                                   <p className={`text-sm font-medium ${
-                                    !notification.isRead ? 'text-gray-900' : 'text-gray-600'
+                                    !notification.isRead ? 'text-gray-900 dark:text-gray-100' : 'text-gray-600 dark:text-gray-400'
                                   }`}>
                                     {notification.title}
                                   </p>
-                                  <p className="text-xs text-gray-500 mt-1">
+                                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                                     {notification.message}
                                   </p>
-                                  <p className="text-xs text-gray-400 mt-1">
+                                  <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">
                                     {getTimeAgo(new Date(notification.time))}
                                   </p>
                                   {notification.action && (
@@ -217,18 +217,18 @@ export function NotificationCenter() {
                                   {!notification.isRead && (
                                     <button
                                       onClick={() => handleMarkAsRead(notification.id)}
-                                      className="p-1 hover:bg-gray-200 rounded"
+                                      className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded"
                                       title="읽음 처리"
                                     >
-                                      <Check className="h-3 w-3" />
+                                      <Check className="h-3 w-3 text-gray-600 dark:text-gray-400" />
                                     </button>
                                   )}
                                   <button
                                     onClick={() => handleDelete(notification.id)}
-                                    className="p-1 hover:bg-gray-200 rounded"
+                                    className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded"
                                     title="삭제"
                                   >
-                                    <X className="h-3 w-3" />
+                                    <X className="h-3 w-3 text-gray-600 dark:text-gray-400" />
                                   </button>
                                 </div>
                               </div>
@@ -241,12 +241,12 @@ export function NotificationCenter() {
                 </>
               ) : (
                 <div className="p-4">
-                  <h4 className="font-medium mb-3">알림 설정</h4>
+                  <h4 className="font-medium mb-3 text-gray-900 dark:text-gray-100">알림 설정</h4>
                   <div className="space-y-3">
                     {schedules.map((schedule) => (
                       <div
                         key={schedule.id}
-                        className="flex items-center justify-between p-3 bg-gray-50 rounded-lg"
+                        className="flex items-center justify-between p-3 bg-gray-50 dark:bg-gray-800 rounded-lg"
                       >
                         <div className="flex items-center space-x-3">
                           <div className="text-xl">
@@ -255,8 +255,8 @@ export function NotificationCenter() {
                             {schedule.type === 'supplement' && '💊'}
                           </div>
                           <div>
-                            <p className="text-sm font-medium">{schedule.title}</p>
-                            <p className="text-xs text-gray-500">{schedule.time}</p>
+                            <p className="text-sm font-medium text-gray-900 dark:text-gray-100">{schedule.title}</p>
+                            <p className="text-xs text-gray-500 dark:text-gray-400">{schedule.time}</p>
                           </div>
                         </div>
                         <label className="relative inline-flex items-center cursor-pointer">
@@ -266,14 +266,14 @@ export function NotificationCenter() {
                             onChange={(e) => handleScheduleToggle(schedule.id, e.target.checked)}
                             className="sr-only peer"
                           />
-                          <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-pink-500"></div>
+                          <div className="w-11 h-6 bg-gray-200 dark:bg-gray-700 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-pink-500"></div>
                         </label>
                       </div>
                     ))}
                   </div>
-                  
-                  <div className="mt-4 p-3 bg-blue-50 rounded-lg">
-                    <p className="text-xs text-blue-700">
+
+                  <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-950 rounded-lg">
+                    <p className="text-xs text-blue-700 dark:text-blue-300">
                       💡 알림을 받으려면 브라우저 알림 권한을 허용해주세요.
                     </p>
                   </div>

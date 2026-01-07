@@ -610,11 +610,11 @@ export function getFoodsByTrimester(trimester: 1 | 2 | 3): FoodItem[] {
 
 // 영양소별 상위 식품 조회
 export function getTopFoodsByNutrient(
-  nutrient: keyof NutritionInfo, 
+  nutrient: keyof NutritionInfo,
   limit: number = 10
 ): FoodItem[] {
   return [...foodDatabase]
-    .sort((a, b) => b.nutritionPer100g[nutrient] - a.nutritionPer100g[nutrient])
+    .sort((a, b) => (b.nutritionPer100g[nutrient] ?? 0) - (a.nutritionPer100g[nutrient] ?? 0))
     .slice(0, limit)
 }
 
@@ -627,11 +627,12 @@ export function getFoodById(id: string): FoodItem | undefined {
 export function calculateNutritionPerServing(food: FoodItem): NutritionInfo {
   const ratio = food.servingSize.weightInGrams / 100
   const nutrition: NutritionInfo = {} as NutritionInfo
-  
+
   Object.keys(food.nutritionPer100g).forEach(key => {
     const nutrientKey = key as keyof NutritionInfo
-    nutrition[nutrientKey] = Math.round(food.nutritionPer100g[nutrientKey] * ratio * 10) / 10
+    const value = food.nutritionPer100g[nutrientKey] ?? 0
+    nutrition[nutrientKey] = Math.round(value * ratio * 10) / 10
   })
-  
+
   return nutrition
 }

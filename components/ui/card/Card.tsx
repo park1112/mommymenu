@@ -2,7 +2,7 @@ import * as React from 'react'
 import { cn } from '@/lib/utils'
 
 export interface CardProps extends React.HTMLAttributes<HTMLDivElement> {
-  variant?: 'default' | 'feminine' | 'organic' | 'dreamy' | 'blossom' | 'sage' | 'lavender' | 'peachy' | 'nutrition'
+  variant?: 'default' | 'feminine' | 'organic' | 'dreamy' | 'blossom' | 'sage' | 'lavender' | 'peachy' | 'nutrition' | 'pregnant-safe'
   padding?: 'none' | 'sm' | 'md' | 'lg' | 'xl'
   organic?: boolean
   float?: boolean
@@ -84,6 +84,13 @@ const Card = React.forwardRef<HTMLDivElement, CardProps>(
         border border-emerald-200/40 dark:border-emerald-700/30
         organic-shadow-md
         ${glow ? 'ring-2 ring-emerald-200/50' : ''}
+      `,
+      'pregnant-safe': `
+        bg-gradient-to-br from-pink-50/80 via-rose-50/90 to-pink-100/70
+        dark:from-pink-900/20 dark:via-rose-900/20 dark:to-pink-800/20
+        border border-pink-200/40 dark:border-pink-700/30
+        organic-shadow-md
+        ${glow ? 'ring-2 ring-pink-200/50' : ''}
       `
     }
     

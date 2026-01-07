@@ -44,11 +44,11 @@ export function MealTimelineWidget() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'completed':
-        return 'text-green-600 bg-green-50 border-green-200'
+        return 'text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/30 border-green-200 dark:border-green-800'
       case 'in-progress':
-        return 'text-orange-600 bg-orange-50 border-orange-200'
+        return 'text-orange-600 dark:text-orange-400 bg-orange-50 dark:bg-orange-900/30 border-orange-200 dark:border-orange-800'
       default:
-        return 'text-gray-600 bg-gray-50 border-gray-200'
+        return 'text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800 border-gray-200 dark:border-gray-700'
     }
   }
 
@@ -58,9 +58,9 @@ export function MealTimelineWidget() {
         <CardTitle className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <span className="text-2xl">🍽️</span>
-            <span>오늘의 식단</span>
+            <span className="text-gray-900 dark:text-gray-100">오늘의 식단</span>
           </div>
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-gray-500 dark:text-gray-400">
             총 1,450 kcal
           </div>
         </CardTitle>
@@ -74,12 +74,12 @@ export function MealTimelineWidget() {
                 <div className="flex items-center mb-2">
                   {getStatusIcon(meal.status)}
                 </div>
-                <div className="text-xs text-gray-500 mb-1">{meal.time}</div>
-                <div className="text-sm font-medium text-gray-700">{meal.type}</div>
+                <div className="text-xs text-gray-500 dark:text-gray-400 mb-1">{meal.time}</div>
+                <div className="text-sm font-medium text-gray-700 dark:text-gray-300">{meal.type}</div>
               </div>
             ))}
             {/* Timeline line */}
-            <div className="absolute top-2.5 left-0 right-0 h-0.5 bg-gray-200 -z-0" />
+            <div className="absolute top-2.5 left-0 right-0 h-0.5 bg-gray-200 dark:bg-gray-700 -z-0" />
           </div>
 
           {/* Meal cards */}
@@ -99,7 +99,7 @@ export function MealTimelineWidget() {
                 
                 <div className="space-y-1 mb-3">
                   {meal.foods.map((food, idx) => (
-                    <div key={idx} className="text-sm text-gray-600">
+                    <div key={idx} className="text-sm text-gray-600 dark:text-gray-400">
                       • {food}
                     </div>
                   ))}
@@ -119,7 +119,7 @@ export function MealTimelineWidget() {
                 )}
 
                 {meal.status === 'completed' && (
-                  <div className="text-xs text-green-600 text-center">
+                  <div className="text-xs text-green-600 dark:text-green-400 text-center">
                     기록 완료 ✓
                   </div>
                 )}

@@ -78,7 +78,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-pink-50 via-rose-50 to-pink-100 dark:from-gray-900 dark:via-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         {/* Header */}
         <div className="text-center mb-8">
@@ -86,10 +86,10 @@ export default function LoginPage() {
             <Baby className="w-8 h-8 text-pink-500" />
             <Heart className="w-6 h-6 text-rose-500" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-2">
             MommyMenu에 오신 것을 환영합니다
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-400">
             건강한 임신을 위한 첫 걸음을 시작하세요
           </p>
         </div>
@@ -103,7 +103,7 @@ export default function LoginPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* General Error */}
               {errors.general && (
-                <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm">
+                <div className="p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-400 text-sm">
                   {errors.general}
                 </div>
               )}
@@ -134,7 +134,7 @@ export default function LoginPage() {
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="p-1 text-gray-400 hover:text-gray-600"
+                      className="p-1 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300"
                     >
                       {showPassword ? (
                         <EyeOff className="w-4 h-4" />
@@ -150,10 +150,10 @@ export default function LoginPage() {
               {/* Remember Me & Forgot Password */}
               <div className="flex items-center justify-between">
                 <label className="flex items-center gap-2">
-                  <input type="checkbox" className="rounded border-gray-300 text-pink-600 focus:ring-pink-500" />
-                  <span className="text-sm text-gray-600">로그인 상태 유지</span>
+                  <input type="checkbox" className="rounded border-gray-300 dark:border-gray-600 text-pink-600 focus:ring-pink-500 dark:bg-gray-700" />
+                  <span className="text-sm text-gray-600 dark:text-gray-400">로그인 상태 유지</span>
                 </label>
-                <Link href="/auth/forgot-password" className="text-sm text-pink-600 hover:text-pink-500">
+                <Link href="/auth/forgot-password" className="text-sm text-pink-600 dark:text-pink-400 hover:text-pink-500">
                   비밀번호를 잊으셨나요?
                 </Link>
               </div>
@@ -171,10 +171,10 @@ export default function LoginPage() {
               {/* Divider */}
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
-                  <div className="w-full border-t border-gray-300" />
+                  <div className="w-full border-t border-gray-300 dark:border-gray-600" />
                 </div>
                 <div className="relative flex justify-center text-sm">
-                  <span className="bg-white px-2 text-gray-500">또는</span>
+                  <span className="bg-white dark:bg-gray-800 px-2 text-gray-500 dark:text-gray-400">또는</span>
                 </div>
               </div>
 
@@ -202,9 +202,9 @@ export default function LoginPage() {
 
         {/* Sign Up Link */}
         <div className="text-center mt-6">
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-gray-400">
             아직 계정이 없으시나요?{' '}
-            <Link href="/auth/register" className="text-pink-600 hover:text-pink-500 font-medium">
+            <Link href="/auth/register" className="text-pink-600 dark:text-pink-400 hover:text-pink-500 font-medium">
               회원가입하기
             </Link>
           </p>
@@ -212,7 +212,7 @@ export default function LoginPage() {
 
         {/* Back to Home */}
         <div className="text-center mt-4">
-          <Link href="/" className="text-sm text-gray-500 hover:text-gray-700">
+          <Link href="/" className="text-sm text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300">
             ← 홈으로 돌아가기
           </Link>
         </div>

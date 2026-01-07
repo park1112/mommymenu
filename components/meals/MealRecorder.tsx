@@ -59,9 +59,9 @@ export function MealRecorder({ onClose }: MealRecorderProps) {
   const handleSaveMeal = () => {
     // 식사 저장
     const totalCalories = addedFoods.reduce((sum, food) => sum + food.calories, 0)
-    
+
     addMealEntry({
-      foodName: mealName || '사용자 입력 식사',
+      name: mealName || '사용자 입력 식사',
       mealType,
       calories: totalCalories || 400, // 기본값
       nutrients: {

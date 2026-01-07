@@ -40,6 +40,27 @@
 .dark {
   --background: #0F1419;
   --foreground: #F5F7FA;
+
+  /* Dark Mode Organic Feminine Palette */
+  --rose-petal: #2a1f21;
+  --soft-blush: #2d2225;
+  --warm-cream: #1f1d1a;
+  --dusty-lavender: #251f2a;
+  --sage-whisper: #1a231a;
+  --peachy-glow: #2a231c;
+  --misty-blue: #1a2229;
+  --lavender-mist: #231f2a;
+
+  /* Dark Mode Accent Colors */
+  --coral-bloom: #ff6b5e;
+  --golden-honey: #e6a84d;
+  --mint-fresh: #6abf6a;
+  --lilac-dream: #b56ec2;
+
+  /* Dark Mode Shadows */
+  --shadow-soft: 0 2px 20px -2px rgba(0, 0, 0, 0.3), 0 8px 32px -8px rgba(0, 0, 0, 0.4);
+  --shadow-medium: 0 4px 32px -4px rgba(0, 0, 0, 0.4), 0 16px 64px -12px rgba(0, 0, 0, 0.5);
+  --shadow-strong: 0 8px 48px -8px rgba(0, 0, 0, 0.5), 0 24px 80px -16px rgba(0, 0, 0, 0.6);
 }
 
 @layer base {
@@ -50,36 +71,54 @@
     font-feature-settings: "rlig" 1, "calt" 1;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    letter-spacing: -0.01em;
   }
 
-  /* Consistent heading styles */
+  /* Enhanced heading styles with optimized letter-spacing */
   h1 {
-    @apply text-4xl font-bold tracking-tight;
+    @apply text-4xl font-bold;
+    letter-spacing: -0.025em;
   }
-  
+
   h2 {
-    @apply text-3xl font-semibold tracking-tight;
+    @apply text-3xl font-semibold;
+    letter-spacing: -0.02em;
   }
-  
+
   h3 {
     @apply text-2xl font-semibold;
-  }
-  
-  h4 {
-    @apply text-xl font-medium;
-  }
-  
-  h5 {
-    @apply text-lg font-medium;
-  }
-  
-  h6 {
-    @apply text-base font-medium;
+    letter-spacing: -0.015em;
   }
 
-  /* Consistent paragraph spacing */
+  h4 {
+    @apply text-xl font-medium;
+    letter-spacing: -0.01em;
+  }
+
+  h5 {
+    @apply text-lg font-medium;
+    letter-spacing: -0.005em;
+  }
+
+  h6 {
+    @apply text-base font-medium;
+    letter-spacing: 0;
+  }
+
+  /* Consistent paragraph spacing with optimized line-height */
   p {
     @apply leading-relaxed;
+    letter-spacing: 0.01em;
+  }
+
+  /* Small text optimization */
+  small, .text-sm, .text-xs {
+    letter-spacing: 0.02em;
+  }
+
+  /* Label and caption styles */
+  label {
+    letter-spacing: 0.01em;
   }
 }
 
@@ -241,65 +280,92 @@
   .organic-shadow {
     box-shadow: var(--shadow-soft);
   }
-  
+
   .organic-shadow-md {
     box-shadow: var(--shadow-medium);
   }
-  
+
   .organic-shadow-lg {
     box-shadow: var(--shadow-strong);
   }
-  
+
   .organic-rounded {
     border-radius: 1.2rem 1.8rem 1.5rem 1.6rem;
   }
-  
+
   .organic-rounded-lg {
     border-radius: 1.8rem 2.4rem 2.1rem 2.2rem;
   }
-  
+
   .organic-rounded-xl {
     border-radius: 2.2rem 2.8rem 2.5rem 2.6rem;
   }
-  
+
   .feminine-gradient {
     background: linear-gradient(135deg, var(--rose-petal) 0%, var(--soft-blush) 50%, var(--warm-cream) 100%);
   }
-  
+
   .peachy-gradient {
     background: linear-gradient(135deg, var(--peachy-glow) 0%, var(--warm-cream) 100%);
   }
-  
+
   .lavender-gradient {
     background: linear-gradient(135deg, var(--dusty-lavender) 0%, var(--lavender-mist) 100%);
   }
-  
+
   .sage-gradient {
     background: linear-gradient(135deg, var(--sage-whisper) 0%, var(--mint-fresh) 100%);
   }
-  
+
   .glass-morph {
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.18);
   }
-  
+
+  .dark .glass-morph {
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
   .text-feminine {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
-  
+
   .text-handwritten {
     font-family: var(--font-handwritten);
+    letter-spacing: 0.02em;
   }
-  
+
   .interactive-lift {
     transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
-  
+
   .interactive-lift:hover {
     transform: translateY(-4px) rotate(0.5deg);
     box-shadow: var(--shadow-medium);
+  }
+
+  /* Text spacing utilities */
+  .tracking-tighter-korean {
+    letter-spacing: -0.03em;
+  }
+
+  .tracking-tight-korean {
+    letter-spacing: -0.02em;
+  }
+
+  .tracking-normal-korean {
+    letter-spacing: -0.01em;
+  }
+
+  .tracking-wide-korean {
+    letter-spacing: 0.01em;
+  }
+
+  .tracking-wider-korean {
+    letter-spacing: 0.02em;
   }
 }
 

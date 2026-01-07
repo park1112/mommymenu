@@ -25,8 +25,12 @@ interface MealEntry {
     calcium: number
   }
   mealType: 'breakfast' | 'lunch' | 'dinner' | 'snack'
-  ingredients: string[]
+  ingredients?: string[]
+  quantity?: number
+  unit?: string
 }
+
+export type { MealEntry }
 
 interface NutritionGoals {
   calories: number
